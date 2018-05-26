@@ -70,8 +70,8 @@ export default {
     margin: 68px 0 0 158px;
 }
 .r-02{
-    width: 450px;
-    margin: 80px 0 0 150px;
+    width: 662px;
+    margin: 80px 0 0 44px;
 }
 .r-btn-group{
     @extend %flex-v-center-h-between;
@@ -83,7 +83,7 @@ export default {
 }
 .r-05{
     width: 638px;
-    margin: 80px 0 0 56px;
+    margin: 50px 0 0 56px;
 }
 .box{
     width: 100%;
@@ -106,8 +106,8 @@ export default {
 }
 .cn{
     .r-02{
-        width: 608px;
-        margin: 80px 0 0 71px;
+        width: 662px;
+        margin: 50px 0 0 44px;
     }
     .share-wrap{
         width: 100%;
@@ -117,8 +117,8 @@ export default {
         top: 0;
         left: 0;
         img{
-            width: 543px;
-            margin: 20px 0 0 153px;
+            width: 596px;
+            margin: 20px 0 0 100px;
         }
     }
 }
