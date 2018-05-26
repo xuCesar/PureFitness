@@ -11,6 +11,7 @@
                         <option value="" disabled="false">选择的地点</option>
                         <option v-for="(item,index) in selectCNData" :key="index" value="item.value">{{item.value}}</option>
                     </select>
+                    <div class="dot"><span> </span></div>
                 </div>
                 <span class="must"><img src="../assets/cn/must.png" alt=""></span>
             </div>
@@ -192,6 +193,7 @@ export default {
         this.lang = this.$route.query.lang ? this.$route.query.lang : this.lang
     },
     mounted () {
+        this.$_wechat.initWXShare()
     },
     methods: {
         isVip () {
@@ -364,6 +366,25 @@ export default {
     background-color: #d6d5d5;
     border-radius: 10px;
     margin-left: -130px;
+    position: relative;
+    .dot{
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: 15px;
+      top: 15px;
+      pointer-events: none;
+      span{
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 12px solid #fff;
+      }
+    }
 }
 #select-area{
     -webkit-appearance: none;
@@ -376,7 +397,6 @@ export default {
     option{
         width: 100%;
         text-align: center;
-        background-color: #f50;
     }
 }
 .must{

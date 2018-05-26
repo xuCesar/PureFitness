@@ -38,6 +38,9 @@ export default {
     created () {
         this.lang = this.$route.query.lang ? this.$route.query.lang : this.lang
     },
+    mounted () {
+        this.$_wechat.initWXShare()
+    },
     methods: {
         toYogaPage () {
         },

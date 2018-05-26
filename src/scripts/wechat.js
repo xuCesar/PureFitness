@@ -3,10 +3,10 @@ import http from '@/scripts/http'
 const wx = window.wx
 
 const defaultOption = {
-  shareTitle: 'PURE FITNESS',
+  shareTitle: '免费体验亚洲高端健身会所PureFitness',
   shareLink: 'http://pure.51xzxz.com/fitness',
-  shareImgUrl: 'http://pure.51xzxz.com/fitness/static/img/share.jpg',
-  shareDesc: 'PURE FITNESS DES',
+  shareImgUrl: 'http://pure.51xzxz.com/fitness/static/cn/share.jpg',
+  shareDesc: '专业的健身体验，还不赶快预约？',
   successFunc: function (type, sta) {
     console.log(type, sta)
     if (type === '朋友圈' && sta === 1) {
@@ -23,17 +23,15 @@ const defaultOption = {
 }
 
 function getTicket (shareOption) {
-  // var url = encodeURIComponent(location.href.split('#')[0])
-  var url = location.href.split('#')[0]
+  var url = encodeURIComponent(location.href.split('#')[0])
   var ticketUrl = 'http://pure.51xzxz.com/InterFace/Service.ashx?action=getjssdk&url=' + url;
   console.log(ticketUrl)
   http.fetchGet(ticketUrl, {
     responseType: 'json'
   }).then(function (res) {
     if (res) {
-      console.log(res)
       wx.config({
-        debug: true,
+        debug: false,
         appId: res.appId,
         timestamp: res.timestamp,
         nonceStr: res.nonceStr,
@@ -91,8 +89,9 @@ function initShare (shareOption) {
   })
 }
 
-const [getWXTicket] = [getTicket, initShare]
+const [getWXTicket, initWXShare] = [getTicket, initShare]
 
 export default {
-  getWXTicket
+  getWXTicket,
+  initWXShare
 }
