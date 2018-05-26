@@ -23,16 +23,17 @@ const defaultOption = {
 }
 
 function getTicket (shareOption) {
-  var url = encodeURIComponent(location.href.split('#')[0])
-  var ticketUrl = 'http://pure.51xzxz.com/InterFace/Service.ashx?action=getjssdk&url=1'
+  // var url = encodeURIComponent(location.href.split('#')[0])
+  var url = location.href.split('#')[0]
+  var ticketUrl = 'http://pure.51xzxz.com/InterFace/Service.ashx?action=getjssdk&url=' + url;
+  console.log(ticketUrl)
   http.fetchGet(ticketUrl, {
-    url: url,
     responseType: 'json'
   }).then(function (res) {
     if (res) {
       console.log(res)
       wx.config({
-        debug: false,
+        debug: true,
         appId: res.appId,
         timestamp: res.timestamp,
         nonceStr: res.nonceStr,
