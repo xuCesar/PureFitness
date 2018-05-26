@@ -1,6 +1,6 @@
 <template>
     <div class="landing-wrap">
-        <div class="landing" v-if="lang == 'cn'">
+        <div class="landing cn" v-if="lang == 'cn'">
             <div v-for="(item,index) in landingCNData" v-if="index == 3" @click="toFormPage" :class="item.className" :key="index">
                 <img :src="item.imageUrl" alt="">
             </div>
@@ -8,7 +8,7 @@
                 <img :src="item.imageUrl" alt="">
             </div>
         </div>
-        <div class="landing" v-else>
+        <div class="landing en" v-else>
             <div v-for="(item,index) in landingENData" v-if="index == 3" @click="toFormPage" :class="item.className" :key="index">
                 <img :src="item.imageUrl" alt="">
             </div>
@@ -40,6 +40,9 @@ export default {
     created () {
         this.lang = this.$route.query.lang ? this.$route.query.lang : this.lang
     },
+    mounted () {
+        this.$_wechat.initWXShare()
+    },
     methods: {
         toFormPage () {
             this.$router.push({
@@ -52,23 +55,26 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/_variable.scss';
-.cover{
-    width: 750px;
-    img{
-        width: 100%;
+.cn{
+    .cover{
+        width: 750px;
+        img{
+            width: 100%;
+        }
+    }
+    .logo{
+        width: 314px;
+        margin: -50px 0 0 57px;
+    }
+    .des{
+        width: 640px;
+        margin: 76px 0 0 58px;
+    }
+    .btn{
+        width: 342px;
+        margin: 0 auto;
+        margin-top: 90px;
     }
 }
-.logo{
-    width: 314px;
-    margin: -50px 0 0 57px;
-}
-.des{
-    width: 612px;
-    margin: 76px 0 0 58px;
-}
-.btn{
-    width: 342px;
-    margin: 0 auto;
-    margin-top: 90px;
-}
+
 </style>

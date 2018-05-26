@@ -1,5 +1,5 @@
 <template>
-    <div class="result-wrap" v-if="lang == 'cn'">
+    <div class="result-wrap cn" v-if="lang == 'cn'">
         <div class="r-cover">
             <img src="static/cn/r-cover.jpg" alt="">
         </div>
@@ -10,7 +10,7 @@
             <img src="../assets/cn/r-02.png" alt="">
         </div>
         <div class="r-btn-group">
-            <div class="r-btn r-btn-1"><a href="http://pure.51xzxz.com/yoga"><img src="../assets/cn/r-03.png" alt=""></a></div>
+            <div class="r-btn r-btn-1"><a href="http://pure.51xzxz.com/fitness"><img src="../assets/cn/r-03.png" alt=""></a></div>
             <div class="r-btn r-btn-2" @click="shareHandle"><img src="../assets/cn/r-04.png" alt=""></div>
         </div>
         <div class="r-05">
@@ -23,7 +23,7 @@
             </div>
         </transition>
     </div>
-    <div class="result-wrap" v-else>
+    <div class="result-wrap en" v-else>
         en
     </div>
 </template>
@@ -37,6 +37,9 @@ export default {
     },
     created () {
         this.lang = this.$route.query.lang ? this.$route.query.lang : this.lang
+    },
+    mounted () {
+        this.$_wechat.initWXShare()
     },
     methods: {
         toYogaPage () {
@@ -87,7 +90,7 @@ export default {
     height: 15px;
     position: absolute;
     bottom: 0;
-    background-color: #de2c32;
+    background-color: #1880cb;
 }
 .share-wrap{
     width: 100%;
@@ -99,6 +102,24 @@ export default {
     img{
         width: 632px;
         margin: 20px 0 0 66px;
+    }
+}
+.cn{
+    .r-02{
+        width: 608px;
+        margin: 80px 0 0 71px;
+    }
+    .share-wrap{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.8);
+        position: absolute;
+        top: 0;
+        left: 0;
+        img{
+            width: 543px;
+            margin: 20px 0 0 153px;
+        }
     }
 }
 .fade-enter-active, .fade-leave-active {

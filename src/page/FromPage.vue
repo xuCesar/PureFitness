@@ -11,6 +11,7 @@
                         <option value="" disabled="false">选择的地点</option>
                         <option v-for="(item,index) in selectCNData" :key="index" value="item.value">{{item.value}}</option>
                     </select>
+                    <div class="dot"><span> </span></div>
                 </div>
                 <span class="must"><img src="../assets/cn/must.png" alt=""></span>
             </div>
@@ -176,6 +177,7 @@ export default {
             isSubmit: false,
             verCodeSrc: 'http://pure.51xzxz.com/InterFace/Captcha.ashx',
             selectCNData: [
+                {id:1, value: '上海恒隆广场'},
                 {id:1, value: '上海iapm环贸广场'},
                 {id:2, value: '上海世纪汇广场'},
             ],
@@ -192,6 +194,7 @@ export default {
         this.lang = this.$route.query.lang ? this.$route.query.lang : this.lang
     },
     mounted () {
+        this.$_wechat.initWXShare()
     },
     methods: {
         isVip () {
@@ -339,7 +342,7 @@ export default {
 }
 .line{
     width: 650px;
-    border: 1px solid #ed1b23;
+    border: 1px solid #1880cb;
     margin-top: 35px;
 }
 .form-box{
@@ -364,6 +367,26 @@ export default {
     background-color: #d6d5d5;
     border-radius: 10px;
     margin-left: -130px;
+    position: relative;
+    .dot{
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: 15px;
+      top: 15px;
+      pointer-events: none;
+      span{
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 12px solid #fff;
+      }
+    }
+
 }
 #select-area{
     -webkit-appearance: none;
@@ -376,7 +399,6 @@ export default {
     option{
         width: 100%;
         text-align: center;
-        background-color: #f50;
     }
 }
 .must{
@@ -469,7 +491,7 @@ export default {
         border-bottom-left-radius: 0px;
     }
     li.active{
-        background-color: #ed1b23;
+        background-color: #1880cb;
         color: #fff;
         // border-top-left-radius: 10px;
         // border-bottom-left-radius: 10px;
