@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <title>Pure Fitness</title>
+  </head>
+  <body>
+    <!--横屏提示-->
+    <div id="orientLayer" class="mod-orient-layer" style="display: none;">
+      <div class="mod-orient-layer__content">
+        <i class="icon mod-orient-layer__icon-orient"></i>
+        <div class="mod-orient-layer__desc">为了更好的体验，请使用竖屏浏览</div>
+      </div>
+    </div>
+  
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+
+      // 横屏监测 DeviceOrientation ///////////
+      var supportOrientation = (typeof window.orientation == "number" && typeof window.onorientationchange == "object");
+
+      var updateOrientation = function () {
+        console.log('updateOrientation');
+        if (supportOrientation) {
+          updateOrientation = function () {
+            var orientation = window.orientation;
+            switch (orientation) {
+              case 90:
+              case -90:
+                orientation = "block"; //landscape
+                break;
+              default:
+                orientation = "none"; //portrait
+            }
+            document.getElementById("orientLayer").style.display = orientation;
+          };
+        } else {
+          updateOrientation = function () {
+            var orientation = (window.innerWidth > window.innerHeight) ? "block" : "none";
+            document.getElementById("orientLayer").style.display = orientation;
+          };
+        }
+        updateOrientation();
+      };
+
+      function initOrientation(){
+        updateOrientation();
+        if (supportOrientation) {
+          window.addEventListener("orientationchange", updateOrientation, false);
+        } else {
+          window.setInterval(updateOrientation, 5000);
+        }
+      }
+
+      initOrientation();
+      window.onresize = function(){
+        initOrientation();
+      }
+
+    </script>
+  </body>
+</html>
