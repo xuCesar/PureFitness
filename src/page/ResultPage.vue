@@ -67,11 +67,11 @@ export default {
 }
 .r-01{
     width: 434px;
-    margin: 68px 0 0 158px;
+    margin: 60px 0 0 158px;
 }
 .r-02{
     width: 460px;
-    margin: 80px 0 0 145px;
+    margin: 40px 0 0 145px;
 }
 .r-btn-group{
     @extend %flex-v-center-h-between;
@@ -83,7 +83,7 @@ export default {
 }
 .r-05{
     width: 638px;
-    margin: 80px 0 0 56px;
+    margin: 50px 0 0 56px;
 }
 .box{
     width: 100%;
