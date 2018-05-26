@@ -6,11 +6,16 @@ import router from './router'
 import 'normalize.css'
 import 'lib-flexible/flexible'
 import * as utils from '@/scripts/utils'
+import Wechat from '@/scripts/wechat'
 
 Vue.config.productionTip = false
 
 Object.defineProperty(Vue.prototype, 'utils', {
   value: utils
+})
+
+Object.defineProperty(Vue.prototype, '$_wechat', {
+  value: Wechat
 })
 
 

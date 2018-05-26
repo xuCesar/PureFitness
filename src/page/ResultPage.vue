@@ -1,35 +1,42 @@
 <template>
-    <div class="result-wrap">
+    <div class="result-wrap" v-if="lang == 'cn'">
         <div class="r-cover">
-            <img src="../../static/cn/r-cover.jpg" alt="">
+            <img src="static/cn/r-cover.jpg" alt="">
         </div>
         <div class="r-01">
-            <img src="../../static/cn/r-01.png" alt="">
+            <img src="../assets/cn/r-01.png" alt="">
         </div>
         <div class="r-02">
-            <img src="../../static/cn/r-02.png" alt="">
+            <img src="../assets/cn/r-02.png" alt="">
         </div>
         <div class="r-btn-group">
-            <div class="r-btn r-btn-1"><a href="http://www.baidu.com"><img src="../../static/cn/r-03.png" alt=""></a></div>
-            <div class="r-btn r-btn-2" @click="shareHandle"><img src="../../static/cn/r-04.png" alt=""></div>
+            <div class="r-btn r-btn-1"><a href="http://pure.51xzxz.com/yoga"><img src="../assets/cn/r-03.png" alt=""></a></div>
+            <div class="r-btn r-btn-2" @click="shareHandle"><img src="../assets/cn/r-04.png" alt=""></div>
         </div>
         <div class="r-05">
-            <img src="../../static/cn/r-05.png" alt="">
+            <img src="static/cn/r-05.png" alt="">
         </div>
         <div class="box"></div>
         <transition name="fade">
             <div class="share-wrap" @click="cancelShare" v-if="isShare">
-                <img src="../../static/cn/share-tag.png" alt="">
+                <img src="static/cn/share-tag.png" alt="">
             </div>
         </transition>
+    </div>
+    <div class="result-wrap" v-else>
+        en
     </div>
 </template>
 <script>
 export default {
     data () {
         return {
+            lang: 'cn',
             isShare: false
         }
+    },
+    created () {
+        this.lang = this.$route.query.lang ? this.$route.query.lang : this.lang
     },
     methods: {
         toYogaPage () {

@@ -7,26 +7,38 @@ import ResultPage from '@/page/ResultPage'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',
       name: 'LandingPage',
-      component: LandingPage
+      component: LandingPage,
+      props (route) {
+        return route.query || {}
+      }
     },
     {
       path: '/form',
       name: 'FromPage',
-      component: FromPage
+      component: FromPage,
+      props (route) {
+        return route.query || {}
+      }
     },
     {
       path: '/res',
       name: 'ResultPage',
-      component: ResultPage
+      component: ResultPage,
+      props (route) {
+        return route.query || {}
+      }
     },
     {
       path: '*',
-      component: LandingPage
+      component: LandingPage,
+      props (route) {
+        return route.query || {}
+      }
     }
   ]
 })

@@ -72,4 +72,5 @@ export function getRealSize (psWidth, psHeight, defaultWidth) {
   
     ga('send', 'event', 'LRL_Inclusive_Beauty', 'Mobile', '' + eventname, 1)
   }
+
   

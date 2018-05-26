@@ -24,24 +24,24 @@ export default {
         return {
             lang: 'cn',
             landingCNData: [
-                {id:1, className: 'cover', imageUrl: '../../static/cn/cover.jpg'},
-                {id:2, className: 'logo', imageUrl: '../../static/cn/logo.png'},
-                {id:3, className: 'des', imageUrl: '../../static/cn/des.png'},
-                {id:4, className: 'btn', imageUrl: '../../static/cn/btn.png'},
+                {id:1, className: 'cover', imageUrl: './static/cn/cover.jpg'},
+                {id:2, className: 'logo', imageUrl: './static/cn/logo.png'},
+                {id:3, className: 'des', imageUrl: './static/cn/des.png'},
+                {id:4, className: 'btn', imageUrl: './static/cn/btn.png'},
             ],
             landingENData: [
-                {id:1, className: 'cover', imageUrl: '../../static/en/cover.jpg'},
-                {id:2, className: 'logo', imageUrl: '../../static/en/logo.png'},
-                {id:3, className: 'des', imageUrl: '../../static/en/des.png'},
-                {id:4, className: 'btn', imageUrl: '../../static/en/btn.png'},
+                {id:1, className: 'cover', imageUrl: './static/en/cover.jpg'},
+                {id:2, className: 'logo', imageUrl: './static/en/logo.png'},
+                {id:3, className: 'des', imageUrl: './static/en/des.png'},
+                {id:4, className: 'btn', imageUrl: './static/en/btn.png'},
             ],
         }
     },
-    watch: {
+    created () {
+        this.lang = this.$route.query.lang ? this.$route.query.lang : this.lang
     },
     methods: {
         toFormPage () {
-            // this.lang = 'en'
             this.$router.push({
                 path: '/form'
             })
