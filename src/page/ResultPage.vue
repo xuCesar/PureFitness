@@ -70,8 +70,8 @@ export default {
     margin: 68px 0 0 158px;
 }
 .r-02{
-    width: 450px;
-    margin: 80px 0 0 150px;
+    width: 460px;
+    margin: 80px 0 0 145px;
 }
 .r-btn-group{
     @extend %flex-v-center-h-between;
