@@ -3,7 +3,7 @@ import http from '@/scripts/http'
 const wx = window.wx
 
 const defaultOption = {
-  shareTitle: '免费体验亚洲高端健身会所PureFitness',
+  shareTitle: '立即预约体验亚洲高端健身会所Pure Fitness',
   shareLink: 'http://pure.51xzxz.com/fitness',
   shareImgUrl: 'http://pure.51xzxz.com/fitness/static/cn/share.jpg',
   shareDesc: '专业的健身体验，还不赶快预约？',

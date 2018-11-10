@@ -1,5 +1,5 @@
 <template>
-    <div class="from-wrap cn" v-if="lang == 'cn'">
+    <div class="from-wrap cn">
         <div class="logo-s"><img src="../assets/cn/logo-s.png" alt=""></div>
         <div class="reg"><img src="../assets/cn/reg.png" alt=""></div>
         <hr class="line">
@@ -9,7 +9,7 @@
                 <div class="select-box">
                     <select name="" id="select-area" v-model="address">
                         <option value="" disabled="false">选择的地点</option>
-                        <option v-for="(item,index) in selectCNData" :key="index" value="item.value">{{item.value}}</option>
+                        <option v-for="(item,index) in selectCNData" :key="index" :value="item.cname">{{item.value}}</option>
                     </select>
                     <div class="dot"><span> </span></div>
                 </div>
@@ -141,9 +141,6 @@
         </div>
         
     </div>
-    <div class="from-wrap en" v-else>
-        123
-    </div>
 </template>
 <script>
 import http from '@/scripts/http'
@@ -177,12 +174,8 @@ export default {
             isSubmit: false,
             verCodeSrc: 'http://pure.51xzxz.com/InterFace/Captcha.ashx',
             selectCNData: [
-                {id:1, value: '上海iapm环贸广场'},
-                {id:2, value: '上海世纪汇广场'},
-            ],
-            selectENData: [
-                {id:1, value: 'Shanghai iapm ICC'},
-                {id:2, value: 'Shanghai Century Exchange Plaza'},
+                {id:1, value: '上海iapm环贸广场', cname: 'iapmf'},
+                {id:2, value: '世纪汇广场（即将开幕）', cname: 'Century Link (Coming Soon)'},
             ],
             recommendMode: [
                 
@@ -198,9 +191,11 @@ export default {
     methods: {
         isVip () {
             this.vipState = true
+            console.log(this.address)
         },
         notVip () {
             this.vipState = false
+            console.log(this.address)
         },
         changeAccept () {
             this.isAccept = !this.isAccept
@@ -252,48 +247,60 @@ export default {
             })
         },
         postUserInfo () {
-            this.isSubmit = true
-            let vipState = this.vipState ? '是' : '否'
-            let isAccept = this.isAccept ? '是' : '否'
+            let vipState = this.vipState ? 'Yes' : 'No'
+            let isAccept = this.isAccept ? 'Yes' : 'No'
+            console.log(vipState)
+            console.log(this.friendName)
             http.postUserInfo({
+                countername: this.address,
                 userName: this.name,
                 userTel: this.mobile,
                 userEmail: this.email,
                 userWechat: this.wechat,
                 Mark: this.note,
                 isMember: vipState,
+                memberNum: this.vNumber,
                 Type: 1,
                 RSS: isAccept,
                 captcha: this.verCode,
-                friendName: '',
-                friendTel: '',
-                friendName2: '',
-                friendTel2: '',
-                friendName3: '',
-                friendTel3: '',
-                friendName4: '',
-                friendTel4: '',
-                friendName5: '',
-                friendTel5: '',
-                friendName6: '',
-                friendTel6: '',
+                friendName: this.friendName,
+                friendTel: this.friendTel,
+                friendName2: this.friendName2,
+                friendTel2: this.friendTel2,
+                friendName3: this.friendName3,
+                friendTel3: this.friendTel3,
+                friendName4: this.friendName4,
+                friendTel4: this.friendTel4,
+                friendName5: this.friendName5,
+                friendTel5: this.friendTel5,
+                friendName6: this.friendName6,
+                friendTel6: this.friendTel6,
                 channel: this.lang
             }).then((res) => {
                 console.log(res)
                 if (res.Code == '1000' && res.Result) {
+                    this.isSubmit = true
+                    this.clearUserInfo()
                     this.toResultPage()
+                } else if (res.Code == '1007') {
+                    alert('请勿重复预约')
+                    return
                 } else if (res.Code == '2005') {
                     alert('证码过期')
+                    return
                 } else if (res.Code == '2006') {
                     alert('验证码错误')
+                    return
                 } else {
                     console.log(res)
+                    return
                 }
                 this.isSubmit = false
-                this.clearUserInfo()
+                
             }).catch((res) => {
                 this.isSubmit = false
                 console.log(res)
+                return
             })
         },
         submitUserInfo () {
@@ -330,13 +337,18 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/_variable.scss';
+.from-wrap{
+    max-width: 750px;
+    margin: 0 auto;
+}
 .logo-s{
     width: 174px;
     margin: 0 0 0 56px;
     padding-top: 30px;
 }
 .reg{
-    width: 193px;
+    // width: 193px;
+    width: 191px;
     margin: 50px 0 0 56px;
 }
 .line{
@@ -454,7 +466,7 @@ export default {
     margin-top: 30px;
 }
 .vip-tag{
-    width: 546px;
+    width: 633px;
 }
 .radio-group{
     width: 650px;
@@ -542,7 +554,9 @@ export default {
 .recommend-wrap{
     width: 650px;
     margin-left: 52px;
-
+    .label{
+        width: 111px;
+    }
     .recommend-h2{
         width: 296px;
         margin-top: 60px;

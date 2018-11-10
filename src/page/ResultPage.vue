@@ -1,5 +1,5 @@
 <template>
-    <div class="result-wrap" v-if="lang == 'cn'">
+    <div id="result-wrap" class="result-wrap" v-if="lang == 'cn'">
         <div class="r-cover">
             <img src="static/cn/r-cover.jpg" alt="">
         </div>
@@ -16,7 +16,7 @@
         <div class="r-05">
             <img src="static/cn/r-05.png" alt="">
         </div>
-        <div class="box"></div>
+        <!-- <div class="box"></div> -->
         <transition name="fade">
             <div class="share-wrap" @click="cancelShare" v-if="isShare">
                 <img src="static/cn/share-tag.png" alt="">
@@ -40,6 +40,9 @@ export default {
     },
     mounted () {
         this.$_wechat.initWXShare()
+        document.getElementById('result-wrap').addEventListener('touchmove', function(e){
+            e.preventDefault()
+        })
     },
     methods: {
         toYogaPage () {
@@ -57,6 +60,8 @@ export default {
 @import '@/styles/_variable.scss';
 .result-wrap{
     @extend %wh;
+    max-width: 750px;
+    margin: 0 auto;
     position: relative;
 }
 .r-cover{
@@ -83,7 +88,7 @@ export default {
 }
 .r-05{
     width: 638px;
-    margin: 50px 0 0 56px;
+    margin: 20px 0 0 56px;
 }
 .box{
     width: 100%;

@@ -55,6 +55,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/_variable.scss';
+.landing-wrap{
+    max-width: 750px;
+    margin: 0 auto;
+}
 .cover{
     width: 750px;
     img{

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import IndexPage from '@/page/IndexPage'
 import LandingPage from '@/page/LandingPage'
 import FromPage from '@/page/FromPage'
 import ResultPage from '@/page/ResultPage'
@@ -11,6 +12,14 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'IndexPage',
+      component: IndexPage,
+      props (route) {
+        return route.query || {}
+      }
+    },
+    {
+      path: '/landing',
       name: 'LandingPage',
       component: LandingPage,
       props (route) {
